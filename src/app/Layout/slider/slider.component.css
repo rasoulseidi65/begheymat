@@ -1,0 +1,12 @@
+:host::ng-deep.carousel .carousel-control-next-icon {
+  width: 50px!important;
+  height: 50px!important;
+}
+:host::ng-deep.carousel .carousel-control-prev-icon {
+  width: 50px!important;
+  height: 50px!important;
+}
+:host::ng-deep.carousel-inner {
+  border-radius: 20px!important;
+}
+

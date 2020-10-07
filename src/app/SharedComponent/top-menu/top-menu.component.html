@@ -1,0 +1,198 @@
+<div class="container-fluid mb-2" dir="rtl">
+  <div class="row">
+    <div id="top-menu-right" class="col-xs-8 col-md-8">
+      <div class="d-flex">
+        <div class="ml-3 mr-3 mt-3 phone">
+          <p>پیگیری سفارش</p>
+        </div>
+
+        <div class="phone mt-3">
+          021-33321222 <i class="fa fa-phone-square"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-4 col-md-4 pull-left" id="top-menu-left">
+      <div class="row-top-menu-left">
+        <ul class="d-flex  pull-left" style="list-style-type: none">
+          <!--          <li class="nav-item"><a href="#"><span class="fa fa-search"></span>جستجو</a></li>-->
+          <li class="nav-item" (click)="showModalDialogLogin()"><a><span class="fa fa-key"></span>ورود/عضویت</a></li>
+          <li class="nav-item" (click)="showModalShoppingCart()"><a><span class="fa fa-shopping-cart"></span>سبد خرید من</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark primary-color mb-1" dir="rtl">
+
+  <!-- Navbar brand -->
+  <!--  <a class="navbar-brand textLogo" href="#" >فروشگاه میگ میگ</a>-->
+  <img src="./assets/bootstrap/img/migmig.png" style="height: 40px;width: 120px">
+  <!-- Collapse button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+          aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Collapsible content -->
+  <div class="collapse navbar-collapse" id="basicExampleNav" dir="rtl">
+
+    <!-- Links -->
+    <ul class="navbar-nav ml-auto text-center">
+      <li class="nav-item ">
+        <a class="nav-link" href="#">صفحه اصلی
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">محصولات</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">تخفیف ها و پیشنهادها</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">درباره ما</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">تماس با ما</a>
+      </li>
+
+
+    </ul>
+    <!-- Links -->
+
+    <form class="form-inline">
+      <div class="md-form my-0  text-muted">
+        <span class="p-input-icon-left">
+    <i class="pi pi-search ml-3"></i>
+    <input type="text" pInputText placeholder="کالای مورد نظرتان را جستجو کنید"/>
+</span>
+        <!--        <input class="form-control   text-muted" style="margin-bottom: 10px" type="text" placeholder="محصول موردنظرتان را جستجو کنید" aria-label="Search">-->
+        <!--        <i class="pi pi-search" style="font-size: 1.2rem;margin-right: -40px;"></i>-->
+      </div>
+    </form>
+  </div>
+  <!-- Collapsible content -->
+
+</nav>
+<!--/.Navbar-->
+<p-sidebar [blockScroll]="true" Scroll [(visible)]="display" position="left" [style]="{width:'30em'}" [modal]="true">
+  <div class=" text-center shoppingMe">سبد خرید من</div>
+  <div class="d-flex flex-column">
+    <div class="mb-auto">
+      <mat-list dir="rtl">
+        <div *ngFor="let item of cartlist">
+          <mat-list-item dir="rtl" class="mb-3" >
+            <mat-icon mat-list-icon class="text-left"><img [src]="item['product']['cartList'].image"
+                                                           style="border-left: #e0e0e0  solid 1.3px;height: 70px;width: 90px;margin-top: -10px;margin-left:-30px">
+            </mat-icon>
+            <div mat-line class="text-right  mt-4 titleProduct mr-5">{{item['product']['cartList'].title}}</div>
+            <div mat-line class="d-flex flex-row">
+              <div class="ml-auto textPrice text-success mr-5 mt-1">
+                {{item['product']['cartList'].price}} تومان
+              </div>
+              <div>
+                <i class="fa fa-trash text-danger fa-2x" (click)="onDeleteCart(item)"></i>
+              </div>
+
+            </div>
+
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+
+
+        <div class="d-flex flex-row justify-content-center mt-3">
+          <div class=" text-muted titleProduct ml-1"> مجموع سبد خرید:</div>
+
+          <div class="text-success textPrice">
+            9,000,000 تومان
+          </div>
+        </div>
+      </mat-list>
+    </div>
+    <div class="mt-5 d-flex flex-row justify-content-center">
+      <button type="button" [routerLink]="['home/cart']" class="mr-auto p-button-success p-button-text" pButton label="تسویه حساب"></button>
+      <button type="button" pButton label=" نمایش سبد خرید" class="p-button-secondary p-button-text"></button>
+    </div>
+  </div>
+</p-sidebar>
+
+
+<p-dialog position="center" dir="rtl" header="فرم ورود" [(visible)]="displayModalLogin" [modal]="false"
+          [style]="{width:'30em',borderRadius:'20px'}"
+          [baseZIndex]="10000"
+          [draggable]="false" [resizable]="false">
+  <div class="d-flex justify-content-center  flex-column" dir="rtl">
+    <div class="mt-4">
+        <span class=" p-input-icon-left w-100">
+           <i class="pi  pi-user text-info"></i>
+    <input id="float-input" type="text" pInputText class="w-100 text-right" placeholder="نام کاربری">
+          <!--    <label for="float-input">نام کاربری</label>-->
+          </span>
+    </div>
+    <div class="mt-4">
+        <span class=" p-input-icon-left w-100">
+          <i class="pi  pi-eye text-info"></i>
+    <input id="float-input1" type="password" pInputText class="w-100" placeholder="رمز عبور">
+
+          </span>
+    </div>
+
+  </div>
+  <ng-template pTemplate="footer" dir="rtl">
+    <div class="d-flex justify-content-center flex-column">
+      <p-button [style]="{fontFamily:'IRANSans_Light'}" icon="pi pi-sign-in" (click)="displayModal=false" label="ورود به حساب کاربری"
+                class="p-button-text w-100"></p-button>
+      <span [style]="{fontFamily:'IRANSans_Light'}" (click)="showModalDialogRegister()"><i class="pi  pi-user-plus text-info ml-3 mt-1" [style]="{fontSize:'20px'}"></i>ثبت نام کاربر جدید </span>
+      <span [style]="{fontFamily:'IRANSans_Light'}" (click)="showModalDialogForgetPassword()"><i class="pi  pi-key text-info ml-3 mt-1" [style]="{fontSize:'20px'}"></i> کلمه عبور خود را فراموش کرده ام</span>
+    </div>
+  </ng-template>
+</p-dialog>
+<!--<p-dialog position="center" dir="rtl" header="بازیابی کلمه عبور" [(visible)]="displayForgetpassword" [modal]="false"-->
+<!--          [style]="{width:'30em',borderRadius:'20px'}"-->
+<!--          [baseZIndex]="190000"-->
+<!--          [draggable]="false" [resizable]="false">-->
+<!--  <div class="d-flex justify-content-center  flex-column" dir="rtl">-->
+<!--    <div class="mt-4">-->
+<!--        <span class=" p-input-icon-left w-100">-->
+<!--           <i class="pi  pi-user text-info"></i>-->
+<!--    <input  type="text" pInputText class="w-100 text-right" placeholder="شماره موبایل خود را وارد کنید">-->
+<!--          &lt;!&ndash;    <label for="float-input">نام کاربری</label>&ndash;&gt;-->
+<!--          </span>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  <ng-template pTemplate="footer" dir="rtl">-->
+<!--    <div class="d-flex justify-content-center flex-column">-->
+<!--      <p-button [style]="{fontFamily:'IRANSans_Light'}" icon="pi pi-sign-in" label="بازیابی کلمه عبور"-->
+<!--                class="p-button-text w-100"></p-button>-->
+<!--      <span [style]="{fontFamily:'IRANSans_Light'}" (click)="showModalDialogLogin()"><i class="fa fa-user text-info ml-3 mt-1" [style]="{fontSize:'20px'}"></i>ورود به حساب کاربری </span>-->
+<!--      <span [style]="{fontFamily:'IRANSans_Light'}" (click)="showModalDialogRegister()"><i class="fa fa-user-plus text-info ml-3 mt-1" [style]="{fontSize:'20px'}"></i>ثبت نام</span>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</p-dialog>-->
+<!--<p-dialog position="center" dir="rtl" header="ثبت نام" [(visible)]="displayRegister" [modal]="false"-->
+<!--          [style]="{width:'30em',borderRadius:'20px'}"-->
+<!--          [baseZIndex]="990000"-->
+<!--          [draggable]="false" [resizable]="false">-->
+<!--  <div class="d-flex justify-content-center  flex-column" dir="rtl">-->
+<!--    <div class="mt-4">-->
+<!--        <span class=" p-input-icon-left w-100">-->
+<!--           <i class="pi  pi-user text-info"></i>-->
+<!--    <input  type="text" pInputText class="w-100 text-right" placeholder="شماره موبایل خود را وارد کنید">-->
+<!--          &lt;!&ndash;    <label for="float-input">نام کاربری</label>&ndash;&gt;-->
+<!--          </span>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--  <ng-template pTemplate="footer" dir="rtl">-->
+<!--    <div class="d-flex justify-content-center flex-column">-->
+<!--      <p-button [style]="{fontFamily:'IRANSans_Light'}" icon="pi pi-sign-in" label="ثبت نام"-->
+<!--                class="p-button-text w-100"></p-button>-->
+<!--      <span [style]="{fontFamily:'IRANSans_Light'}" (click)="showModalDialogLogin()"><i class="fa fa-sign-in text-info ml-3 mt-1" [style]="{fontSize:'20px'}"></i>ورود به حساب کاربری </span>-->
+<!--      <span [style]="{fontFamily:'IRANSans_Light'}" (click)="showModalDialogForgetPassword()"><i class="pi  pi-key text-info ml-3 mt-1" [style]="{fontSize:'20px'}"></i> بازیابی رمز عبور</span>-->
+<!--    </div>-->
+<!--  </ng-template>-->
+<!--</p-dialog>-->

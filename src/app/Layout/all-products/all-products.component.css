@@ -1,0 +1,96 @@
+.title{
+  font-family: IRANSans_Bold;
+  font-size: 18px;
+}
+.headerLabel{
+  min-height: 60px;
+  width: 30px;
+  padding: 15px 0px;
+  position: absolute;
+  left: 10px;
+top:-20px;
+  text-align: center;
+  z-index: 9;
+}
+.headerLabel::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  top: 25px;
+  left: -1px;
+  z-index: 0;
+  border: 3px solid;
+  border-top-color: currentcolor;
+  border-right-color: currentcolor;
+  border-bottom-color: currentcolor;
+  border-left-color: currentcolor;
+  border-top-color: currentcolor;
+  border-right-color: currentcolor;
+  border-bottom-color: currentcolor;
+  border-left-color: currentcolor;
+  border-color:#ff4444;
+  border-top-right-radius: 10px;
+  transform: rotate(-90deg);
+}
+.noselect {
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  bottom: 15px;
+  border-top: 6px solid #ff4444;
+}
+.headerLabel span {
+  color: #ffffff;
+  font-size: 18px;
+  direction: rtl;
+  height: 80px;
+  width: 25px;
+  writing-mode: vertical-lr;
+  -webkit-writing-mode: vertical-lr;
+  -ms-writing-mode: vertical-lt;
+  text-align: center;
+  font-family: IRANSans_Bold;
+}
+:host::ng-deep.p-card-footer{
+  margin: -16px;
+  border-top: #e0e0e0 solid 0.5px;
+}
+.titleProducts{
+  font-family: IRANSans_Bold;
+  font-size: 14px;
+}
+.textPrice{
+  font-family: IRANSans_Bold;
+  font-size: 14px;
+}
+.textPriceOld{
+  font-family: IRANSans_Bold;
+  font-size: 14px;
+}
+:host::ng-deep.p-rating .p-rating-icon.pi-star{
+  color: #FF8800!important;
+
+}
+
+:host::ng-deep.p-rating .p-rating-icon {
+  color: #495057;
+  margin-left: 0.1rem!important;
+}
+:host::ng-deep.p-paginator .p-paginator-pages .p-paginator-page{
+  font-family: IRANSans_Light!important;
+}
+.titleAll{
+  font-size: 12px;
+  font-family: IRANSans_Light;
+}
+:host::ng-deep.p-panel .p-panel-header {
+  border-top: #33b5e5 solid 2px!important;
+
+}
+:host::ng-deep.p-card {
+  border: #e0e0e0 solid 0.5px!important;
+}
